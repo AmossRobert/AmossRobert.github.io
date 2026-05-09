@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amoss Robert | Data Scientist & Computer Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Color Palette: Light Green Gradient, Dark Blue, Black, White */
+        :root {
+            --light-green: #a8e6cf;
+            --light-green-grad: linear-gradient(135deg, #a8e6cf 0%, #d4f1f4 100%);
+            --dark-blue: #0f3460;
+            --dark-blue-light: #16213e;
+            --black: #1a1a2e;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-border: #e0e0e0;
+            --accent-green: #2ecc71;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header / Navigation - Simple 3 Tabs */
+        .header {
+            background: var(--white);
+            border-bottom: 3px solid var(--light-green);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+        }
+
+        /* Profile Image Placeholder - Top Left Corner */
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--light-green);
+            background: var(--gray-light);
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex: 1;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+            transition: all 0.3s;
+            border-radius: 2rem;
+            font-family: inherit;
+        }
+
+        .tab-btn:hover {
+            background: var(--light-green);
+            color: var(--dark-blue);
+        }
+
+        .tab-btn.active {
+            background: var(--dark-blue);
+            color: var(--white);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 3rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            border-left: 5px solid var(--light-green);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+
+        .section-header:first-of-type {
+            margin-top: 0;
+        }
+
+        /* About Card */
+        .about-card {
+            background: var(--light-green-grad);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            color: var(--dark-blue);
+            border: 1px solid rgba(15, 52, 96, 0.1);
+        }
+
+        .about-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Experience & Education Items */
+        .timeline-item {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .item-subtitle {
+            font-size: 1rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-date {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: var(--light-green);
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+        }
+
+        .item-location {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .item-description {
+            color: #333;
+            margin-top: 0.5rem;
+        }
+
+        .item-description ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .item-description li {
+            margin: 0.5rem 0;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: var(--light-green);
+            box-shadow: 0 5px 15px rgba(168, 230, 207, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .tech-badge {
+            background: var(--light-green);
+            color: var(--dark-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: #333;
+            font-size: 0.9rem;
+            margin: 0.75rem 0;
+        }
+
+        .project-features {
+            list-style: none;
+            margin: 0.75rem 0;
+        }
+
+        .project-features li {
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+            color: #555;
+        }
+
+        .project-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Project Link with Thumbnail */
+        .project-link-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        .project-link:hover {
+            color: #000;
+        }
+
+        .project-thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-border);
+            background: var(--gray-light);
+        }
+
+        /* YouTube Preview Window */
+        .youtube-preview {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+
+        .youtube-thumbnail {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-border);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .youtube-thumbnail:hover {
+            transform: scale(1.02);
+        }
+
+        .youtube-link {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-category {
+            background: var(--gray-light);
+            border-radius: 0.75rem;
+            padding: 1rem;
+        }
+
+        .skill-category h4 {
+            color: var(--dark-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            border-left: 3px solid var(--light-green);
+            padding-left: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            color: var(--dark-blue);
+        }
+
+        .training-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .training-item {
+            background: var(--light-green);
+            color: var(--dark-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Education Cards */
+        .education-card {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-degree {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+        }
+
+        .edu-school {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+        .contact-box {
+            text-align: center;
+            background: var(--light-green-grad);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--dark-blue);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .contact-email:hover {
+            transform: scale(1.02);
+            background: #1a4a7a;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--gray-border);
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .nav-container {
+                flex-direction: column;
+                padding: 0.75rem 1rem;
+                gap: 0.5rem;
+            }
+            .nav-tabs {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .section-header {
+                font-size: 1.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav-container">
+            <!-- Profile Image Placeholder - Top Left Corner -->
+            <img src="Profile.jpg" alt="Profile" class="profile-image" onerror="this.src='https://via.placeholder.com/50?text=Photo'">
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('tab1')"> About & Experience</button>
+                <button class="tab-btn" onclick="switchTab('tab2')"> Projects</button>
+                <button class="tab-btn" onclick="switchTab('tab3')"> Skills & Trainings</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Tab 1: About & Experience -->
+        <div id="tab1" class="tab-content active">
+            <!-- About Statement -->
+            <div class="about-card">
+                <p><strong>Amoss Robert (Data Scientist & Computer Engineer) </strong> - I am a Data Science master student at the African Center of Excellence in Data Science at the University of Rwanda. My works span computer vision, imaging, intelligent sensing, data systems, software engineering and integrated hardware-software technologies. My research component of my work focuses on spectral signatures of materials and biologically inspired perception systems for building resilient visual information interpretation systems. I have experience in machine learning research, technology project leadership, software solution development and data led digital systems consulting through work with KAI Lab at Malawi University of Business and Applied Sciences as a Machine Learning Researcher and Project Lead, a Data Scientist at the Ministry of Health in the Republic of Rwanda and independent technology projects. My journey started with a Bachelor of Electronics and Computer Engineering with honors degree from University of Malawi the Polytechnic (now MUBAS) where I was introduced to the world of data systems, computational intelligence, software engineering, databases, and computer architectures. On my available time I work as a consultant supporting individuals and organizations with data preprocessing and analysis needs.</p>
+            </div>
+
+            <!-- Education -->
+            <div class="section-header">🎓 Education</div>
+            <div class="education-card">
+                <div class="edu-degree">Master of Science in Data Science (Specialising in Data Mining)</div>
+                <div class="edu-school">African Center of Excellence in Data Science, University of Rwanda</div>
+                <div class="item-date">Expected 2026</div>
+            </div>
+            <div class="education-card">
+                <div class="edu-degree">Bachelor of Electronics and Computer Engineering (Honours)</div>
+                <div class="edu-school">School of Engineering, University of Malawi (now MUBAS)</div>
+                <div class="item-date">Obtained 2023</div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="section-header"> Professional Experience</div>
+
+            <div class="timeline-item">
+                <div class="item-title">Data Scientist (Internship)</div>
+                <div class="item-subtitle">Ministry of Health - Health Workforce Development & National Health Intelligence Center Departments</div>
+                <div class="item-date">January - April 2026 | Kigali, Rwanda</div>
+                <div class="item-description">
+                    <ul>
+                        <li>Led a team of Data Science experts and consultants in handling highly confidential Human Resources databases, assessing data quality, schema consistency, migration planning and validation workflows, resulting in a comprehensive recommendations report for the IT Department.</li>
+                        <li>Developed Python-based pipelines for automated cleaning, structuring and visualization of air quality data from 16 monitoring stations across Rwanda, enabling downstream analytics on seasonality, spatial distribution and policy implications.</li>
+                        <li>Contributed to team development of a structured digital survey in KoboToolbox with validation rules and skip logic to improve data quality and streamline health workers capacity assessment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="item-title">Researcher and Analyst in Machine Learning</div>
+                <div class="item-subtitle">Kuyesera AI Lab (KAI Lab) - Malawi University of Business and Applied Sciences</div>
+                <div class="item-date">December 2023 - March 2025</div>
+                <div class="item-description">
+                    <ul>
+                        <li>Led day-to-day coordination of interdisciplinary teams (field data collectors, software developers, project managers) establishing data collection, storage and quality control workflows that delivered 15,000+ raw data records for Machine Learning experimentation.</li>
+                        <li>Conducted team building trainings prior to data collection, reducing data collectors attrition and operating costs by 20%.</li>
+                        <li>Developed a Windows-based offline dataset annotation tool using Python Tkinter to automate manual labeling of textual data, reducing completion period by 10% and increasing labeling speed and accuracy.</li>
+                        <li>Led experimental design ensuring ethics compliance, presented findings at conferences and co-authored an award winning research paper about scalable SMS based Fraud Detection Using Machine Learning and Natural Language Processing technicues. The paper published in Springer Nature.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="item-title">Project Lead</div>
+                <div class="item-subtitle">Kuyesera AI Lab (KAI Lab) - Malawi University of Business and Applied Sciences</div>
+                <div class="item-date">May 2024 – August 2024</div>
+                <div class="item-description">
+                    <ul>
+                        <li>Led interdisciplinary team in planning and execution of the GIS focused project in data collection protocols and geospatial data collection for primary, secondary and tertiary schools in Southern Malawi using QGIS and Python scripts, resulting in metadata creation for over 500 schools stored in cloud platform.</li>
+                    </ul>
+                </div>
+            </div>
+
+            
+
+            <!-- Contact within Tab 1 -->
+            <div class="contact-box">
+                <p style="margin-bottom: 1rem;">📧 Connect with me</p>
+                <a href="mailto:amosrobert857@gmail.com" class="contact-email">amosrobert857@gmail.com</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Open for collaboration, research and consulting opportunities.</p>
+            </div>
+        </div>
+
+        <!-- Tab 2: Projects -->
+        <div id="tab2" class="tab-content">
+            <div class="section-header"> Featured Projects</div>
+            <div class="projects-grid">
+                <!-- dotBlink -->
+                <div class="project-card">
+                    <div class="project-title">dotBlink - Video Annotation Tool</div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">OpenCV</span>
+                        <span class="tech-badge">Computer Vision</span>
+                    </div>
+                    <div class="project-desc">Windows based Video dataset generation tool using pause-annotate-replay paradigm. Annotate and compile into finished video datasets ready for computer vision applications.</div>
+                    <ul class="project-features">
+                        <li>Automated YOLO format export</li>
+                        <li>Real-time video annotation while playing</li>
+                        <li>No frame extraction needed</li>
+                        <li>Crowd & occlusion attributes</li>
+                    </ul>
+                    <div class="project-link-container">
+                        <img src="dotBlink.png" alt="dotBlink thumbnail" class="project-thumbnail" onerror="this.src='https://via.placeholder.com/60?text=GitHub'">
+                        <a href="https://github.com/AmossRobert/dotblink-video-annotator" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <!-- dBCorteK -->
+                <div class="project-card">
+                    <div class="project-title">dBCorteK - Database Schema Data Type Definiton Helper Tool</div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">SQLite</span>
+                        <span class="tech-badge">Data Engineering</span>
+                    </div>
+                    <div class="project-desc">Semi-intelligent database agnostic schema design tool that uses sample data expected to be stored in the database in order to recommend optimal data types using statistical analysis and predefined rules based on Data Science basic principles.</div>
+                    <ul class="project-features">
+                        <li>Statistical analysis on sample data</li>
+                        <li>Data quality at design stage</li>
+                        <li>CREATE TABLE DDL generation</li>
+                        <li>Built-in SQL editor</li>
+                    </ul>
+                    <div class="project-link-container">
+                        <img src="dBCortek.png" alt="dBCorteK thumbnail" class="project-thumbnail" onerror="this.src='https://via.placeholder.com/60?text=GitHub'">
+                        <a href="https://github.com/AmossRobert/dBCorteK" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <!-- Thothola Megabytes -->
+                <div class="project-card">
+                    <div class="project-title">Thothola Megabytes - Video Compressor</div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">FFmpeg</span>
+                        <span class="tech-badge">Video Processing</span>
+                    </div>
+                    <div class="project-desc">Windows tool that reduces large video files (GBs) to smaller sizes without noticeable quality loss for social media, email, or archival storage.</div>
+                    <ul class="project-features">
+                        <li>Up to 90% size reduction</li>
+                        <li>Multiple format support</li>
+                        <li>Resolution presets (4K to 480p)</li>
+                        <li>H.265 & H.264 encoding etc</li>
+                    </ul>
+                    <div class="project-link-container">
+                        <img src="thothola.png" alt="Thothola thumbnail" class="project-thumbnail" onerror="this.src='https://via.placeholder.com/60?text=GitHub'">
+                        <a href="https://github.com/AmossRobert/Thothola-Megabytes-Video-Compressor" class="project-link">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <!-- Real-Time Route Risk Zoning with YouTube Preview Window -->
+                <div class="project-card">
+                    <div class="project-title">Route Risk Zoning Platform for Transportors</div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Web</span>
+                        <span class="tech-badge">GIS</span>
+                        <span class="tech-badge">Real-time</span>
+                    </div>
+                    <div class="project-desc">Web-based system for time-critical transportation logistics to define and visualize risk zones on a map in real-time, monitor movement and exposure duration.</div>
+                    <ul class="project-features">
+                        <li>Real-time geofencing</li>
+                        <li>Live route tracking</li>
+                        <li>Risk level monitoring</li>
+                        <li>Operational decision support</li>
+                    </ul>
+                    <!-- YouTube Preview Window: Thumbnail + Link -->
+                    <div class="youtube-preview">
+                        <a href="https://www.youtube.com/watch?v=t8YJcQ_6dkA&t=6s&pp=ygUccmVhbCB0aW1lIHJpc2sgem9uZSB0cmFja2luZw%3D%3D" target="_blank">
+                            <img src="https://img.youtube.com/vi/t8YJcQ_6dkA/0.jpg" alt="YouTube Preview" class="youtube-thumbnail">
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=t8YJcQ_6dkA&t=6s&pp=ygUccmVhbCB0aW1lIHJpc2sgem9uZSB0cmFja2luZw%3D%3D" class="youtube-link" target="_blank">Watch Platform Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Nyumba Project -->
+                <div class="project-card">
+                    <div class="project-title">Nyumba - Real Estate Management App</div>
+                    <div class="project-tech">
+                        <span class="tech-badge">Mobile App</span>
+                        <span class="tech-badge">Flutter</span>
+                        <span class="tech-badge">Real Estate</span>
+                    </div>
+                    <div class="project-desc">Mobile application connecting landlords for managing rental houses, reducing theft by deception from middlemen.</div>
+                    <ul class="project-features">
+                        <li>Landlord-tenant management</li>
+                        <li>Payment tracking</li>
+                        <li>Property listing</li>
+                    </ul>
+                    <div class="project-link-container">
+                        <img src="nyumba.png" alt="Nyumba thumbnail" class="project-thumbnail" onerror="this.src='https://via.placeholder.com/60?text=PlayStore'">
+                        <a href="https://play.google.com/store/apps/details?id=com.gusherlabs.nyumba" class="project-link">View Nyumba Project →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Freelancing Note -->
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--gray-light); border-radius: 1rem;">
+                <p><strong> Freelancing Software Developer</strong> - Available for bespoke software development, data preprocessing and analytics consulting.</p>
+            </div>
+        </div>
+
+        <!-- Tab 3: Skills & Education -->
+        <div id="tab3" class="tab-content">
+            <div class="section-header"> Skills & Competencies</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Data Engineering</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Pipelines</span>
+                        <span class="skill-tag">ETL (Airflow & Apache Kafka</span>
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">Data Standardization</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Database Management</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Oracle DB</span>
+                        <span class="skill-tag">MS SQL Server</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Data Analysis & Visualization</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python & R</span>
+                        <span class="skill-tag">MS Power BI</span>
+                        <span class="skill-tag">Tableau</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Software Development</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">HTML/CSS/JS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Cloud & Big Data</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">Microsoft Fabric</span>
+                        <span class="skill-tag">Spark</span>
+                        <span class="skill-tag">Hadoop</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>IT Security & Auditing</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">COBIT</span>
+                        <span class="skill-tag">NIST</span>
+                        <span class="skill-tag">Risk Assessment</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Survey Design & Data Collection</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">KoboToolbox</span>
+                        <span class="skill-tag">Validation Rules</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Technical Documentation</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Reports</span>
+                        <span class="skill-tag">Non-technical communication</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header"> Professional Trainings</div>
+            <div class="training-list">
+                <span class="training-item">Data Privacy and Protection | African Population and Health Research Center</span>
+                <span class="training-item">DHIS2 Fundamentals | DHIS</span>
+                <span class="training-item">Basics of Product Management | Cambridge International Qualifications</span>
+                <span class="training-item">Microsoft PowerBI | African Center of Execellence in Data Science, University of Rwanda</span>
+                <span class="training-item">Microsoft Fabric | African Center of Execellence in Data Science, University of Rwanda</span>
+                <span class="training-item">Spark & Hadoop | African Center of Execellence in Data Science, University of Rwanda</span>
+            </div>
+
+            <div class="section-header" style="margin-top: 2rem;"> Other Competencies</div>
+            <div class="skills-grid" style="grid-template-columns: 1fr;">
+                <div class="skill-category">
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Quality Assessment</span>
+                        <span class="skill-tag">Migration Planning</span>
+                        <span class="skill-tag">Experimental Design</span>
+                        <span class="skill-tag">Team Coordination</span>
+                        <span class="skill-tag">Research Ethics</span>
+                        <span class="skill-tag">Geospatial Data Analysis</span>
+                        <span class="skill-tag">Machine Learning Research</span>
+                        <span class="skill-tag">Computer Vision Research & Product Development</span>
+                        <span class="skill-tag">Intelligent Sensing (Sensor Networks)</span>
+                        <span class="skill-tag">Hardware-Software Integration and Machine Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publications Recognition -->
+            <!-- Publications Recognition -->
+            <div class="section-header"> Publications & Recognition</div>
+            <div class="timeline-item">
+                <div class="item-title">Springer Nature Publication</div>
+                <div class="item-description">
+                    <strong>Title:</strong> Using Machine Learning to Detect Fraudulent SMSs in Chichewa
+                </div>
+                <div class="item-description" style="margin-top: 0.5rem;">
+                    <strong>Citation:</strong> Taylor, A., Robert, A. (2025). Using Machine Learning to Detect Fraudulent SMSs in Chichewa. In: Sinha, G.R., Fan, C.P., Bajaj, V., Nisar, H., Ullo, S.L. (eds) Integrating AI in Science, Management, and Technology. AISMT 2025. Communications in Computer and Information Science, vol 2699. Springer, Cham. https://doi.org/10.1007/978-3-032-08260-2_12
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <a href="https://doi.org/10.1007/978-3-032-08260-2_12" class="project-link" style="border-bottom-color: var(--light-green);">View Publication on Springer →</a>
+                </div>
+            </div>
+
+            
+            <div class="timeline-item">
+            <div class="item-title">Best Paper Award</div>
+            <div class="item-description">Conference proceedings recognition for contributions to machine learning research and experimental design. Conference name: Integrating AI in Science, Management, and Technology. AISMT 2025. Communications in Computer and Information Science, organised by GSFC University in Vadodara, India - Feb 2025</div>
+            <div style="margin-top: 1rem;">
+                <img src="Best_Paper_Certificate.jpg" 
+                     alt="Best Paper Award Certificate" 
+                     style="max-width: 100%; border-radius: 0.75rem; border: 1px solid var(--gray-border); cursor: pointer;"
+                     onclick="window.open(this.src)">
+                <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">Click certificate to enlarge</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Amoss Robert - Data Scientist & Computer Engineer</p>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
